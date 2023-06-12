@@ -19,7 +19,7 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
       - name: Connect to EC2 instance
@@ -31,4 +31,4 @@ jobs:
           script: |
             cd /var/www/html
             git pull origin main
-            sudo service httpd restart
+            sudo service apache2 restart
